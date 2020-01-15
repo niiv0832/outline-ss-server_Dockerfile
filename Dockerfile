@@ -20,7 +20,7 @@ git submodule update --init --recursive
 COPY Makefile /output/outline-ss-server/
 RUN set -x \
 cd /output/outline-ss-server && \
-make -j 4 static  && \
+make -j 4  && \
 upx --ultra-brute -qq ./outline-ss-server
 
 ###############################################################################
