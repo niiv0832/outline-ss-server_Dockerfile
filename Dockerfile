@@ -9,7 +9,7 @@ RUN set -x && \
     mkdir /tmp/repo && \
     mkdir /ssserv && \
     cd /tmp/repo && \
-    wget --no-check-certificate https://github.com/Jigsaw-Code/outline-ss-server/releases/download/${SSVER}/outline-ss-server_${SSVER}_linux_x86_64.tar.gz -O /tmp/ssserv.tar.gz && \
+    wget --no-check-certificate https://github.com/Jigsaw-Code/outline-ss-server/releases/download/v${SSVER}/outline-ss-server_${SSVER}_linux_x86_64.tar.gz -O /tmp/ssserv.tar.gz && \
     tar -xvf /tmp/ssserv.tar.gz -C /ssserv
 
 
