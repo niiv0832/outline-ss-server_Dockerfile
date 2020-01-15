@@ -2,8 +2,8 @@
 # BUILD STAGE
 FROM golang:1.13-alpine
 
-RUN set -x \
-  && apk --no-cache --update add \
+RUN set -x && \
+    apk --no-cache --update add \
     bash \
     ca-certificates \
     curl \
@@ -13,12 +13,12 @@ RUN set -x \
     
 COPY . /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/
 
-RUN set -x \
-mkdir -p /go/src/github.com/Jigsaw-Code/ && \
-cd /go/src/github.com/Jigsaw-Code/ && \
-git clone https://github.com/Jigsaw-Code/outline-ss-server.git && \
-cp /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/Makefile /go/src/github.com/Jigsaw-Code/outline-ss-server/Makefile && \ 
-cd /go/src/github.com/Jigsaw-Code/outline-ss-server/ && \ 
+RUN set -x && \
+    mkdir -p /go/src/github.com/Jigsaw-Code && \
+    cd /go/src/github.com/Jigsaw-Code/ && \
+    git clone https://github.com/Jigsaw-Code/outline-ss-server.git && \
+    cp /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/Makefile /go/src/github.com/Jigsaw-Code/outline-ss-server/Makefile && \ 
+    cd /go/src/github.com/Jigsaw-Code/outline-ss-server/ && \ 
 #&& \
 #git submodule update --init --recursive
 
