@@ -9,18 +9,22 @@ RUN set -x \
     curl \
     git \
     make \
-    upx && \
+    upx
     
-mkdir -p /output && \
-cd /output && \
+COPY . /go/src/github.com/Jigsaw-Code/outline-ss-server/
+
+RUN set -x \
+# mkdir -p /output && \
+cd /go/src/github.com/Jigsaw-Code/outline-ss-server/ && \
 git clone https://github.com/Jigsaw-Code/outline-ss-server.git && \
-cd /output/outline-ss-server 
+cp /go/src/github.com/Jigsaw-Code/outline-ss-server/Makefile /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server/Makefile && \ 
+cd /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server && \ 
 #&& \
 #git submodule update --init --recursive
 
-COPY Makefile /output/outline-ss-server/
-RUN set -x \
-cd /output/outline-ss-server && \
+#COPY Makefile /output/outline-ss-server/
+
+#cd /output/outline-ss-server && \
 make -j 4 static && \
 upx --ultra-brute -qq ./outline-ss-server
 
@@ -29,7 +33,7 @@ upx --ultra-brute -qq ./outline-ss-server
 
 FROM scratch
 
-COPY --from=0 /output/outline-ss-server /outline-ss-server
+COPY --from=0 /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server/outline-ss-server /outline-ss-server
 
 VOLUME ["/cfg"]
 
