@@ -17,7 +17,7 @@ RUN set -x && \
 
 FROM scratch
 
-ENTRYPOINT ["outline-ss-server"]
+ENTRYPOINT ["/outline-ss-server"]
 #ENV SS_IP=0.0.0.0 \
 #    SS_PORT=3128 \
 #    SS_STATS_IP=0.0.0.0 \
