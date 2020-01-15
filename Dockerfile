@@ -19,21 +19,15 @@ RUN set -x && \
     git clone https://github.com/Jigsaw-Code/outline-ss-server.git && \
     cp /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/Makefile /go/src/github.com/Jigsaw-Code/outline-ss-server/Makefile && \ 
     cd /go/src/github.com/Jigsaw-Code/outline-ss-server/ && \ 
-#&& \
-#git submodule update --init --recursive
-
-#COPY Makefile /output/outline-ss-server/
-
-#cd /output/outline-ss-server && \
-make -j 4 static && \
-upx --ultra-brute -qq ./outline-ss-server
+    make -j 4 static && \
+    upx --ultra-brute -qq ./outline-ss-server
 
 ###############################################################################
 # PACKAGE STAGE
 
 FROM scratch
 
-COPY --from=0 /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server/outline-ss-server /outline-ss-server
+COPY --from=0 /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server /outline-ss-server
 
 VOLUME ["/cfg"]
 
