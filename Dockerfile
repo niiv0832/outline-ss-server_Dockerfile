@@ -11,14 +11,14 @@ RUN set -x \
     make \
     upx
     
-COPY . /go/src/github.com/Jigsaw-Code/outline-ss-server/
+COPY . /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/
 
 RUN set -x \
-# mkdir -p /output && \
-cd /go/src/github.com/Jigsaw-Code/outline-ss-server/ && \
+mkdir -p /go/src/github.com/Jigsaw-Code/ && \
+cd /go/src/github.com/Jigsaw-Code/ && \
 git clone https://github.com/Jigsaw-Code/outline-ss-server.git && \
-cp /go/src/github.com/Jigsaw-Code/outline-ss-server/Makefile /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server/Makefile && \ 
-cd /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server && \ 
+cp /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/Makefile /go/src/github.com/Jigsaw-Code/outline-ss-server/Makefile && \ 
+cd /go/src/github.com/Jigsaw-Code/outline-ss-server/ && \ 
 #&& \
 #git submodule update --init --recursive
 
