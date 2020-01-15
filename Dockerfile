@@ -36,4 +36,4 @@ EXPOSE 55555
 
 ENTRYPOINT ["/outline-ss-server"]
 
-CMD ["-config", "/cfg/shadowsocks_o.yml", "--replay_history"]
+CMD ["-config", "/cfg/shadowsocks_o.yml", "--replay_history", "1000"]
