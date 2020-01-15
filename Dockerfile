@@ -4,12 +4,13 @@ FROM alpine:latest
 ARG SS_VER=1.0.7
 
 RUN set -x && \
-    apk --no-cache --update add wget && \
+    apk --no-cache --update add wget upx && \
     mkdir /tmp/repo && \
     mkdir /ssserv && \
     cd /tmp/repo && \
     wget --no-check-certificate https://github.com/Jigsaw-Code/outline-ss-server/releases/download/v${SS_VER}/outline-ss-server_${SS_VER}_linux_x86_64.tar.gz -O /tmp/ssserv.tar.gz && \
-    tar -xvf /tmp/ssserv.tar.gz -C /ssserv
+    tar -xvf /tmp/ssserv.tar.gz -C /ssserv && \
+    upx --ultra-brute -qq /ssserv/outline-ss-server
 
 
 ###############################################################################
