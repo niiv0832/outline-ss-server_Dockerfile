@@ -1,6 +1,6 @@
 ###############################################################################
 # BUILD STAGE
-FROM golang:1.13-alpine
+FROM rust:alpine
 
 RUN set -x && \
     apk --no-cache --update add \
@@ -9,30 +9,26 @@ RUN set -x && \
     curl \
     git \
     make \
-    upx
+    upx && \
     
-COPY . /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/
-
-RUN set -x && \
-    mkdir -p /go/src/github.com/Jigsaw-Code && \
-    cd /go/src/github.com/Jigsaw-Code/ && \
-    git clone https://github.com/Jigsaw-Code/outline-ss-server.git && \
-    cp /go/src/github.com/niiv0832/outline-ss-server_Dockerfile/Makefile /go/src/github.com/Jigsaw-Code/outline-ss-server/Makefile && \ 
-    cd /go/src/github.com/Jigsaw-Code/outline-ss-server/ && \ 
-    make -j 4 static && \
-    upx --ultra-brute -qq ./outline-ss-server
+    mkdir -p /src && \
+    cd /src/ && \
+    git clone https://github.com/shadowsocks/shadowsocks-rust.git && \
+    cd /src/shadowsocks-rust.git/ && \ 
+    make -j 4 && \
+    upx --ultra-brute -qq /usr/local/bin/ssserver
 
 ###############################################################################
 # PACKAGE STAGE
 
 FROM scratch
 
-COPY --from=0 /go/src/github.com/Jigsaw-Code/outline-ss-server/outline-ss-server /outline-ss-server
+COPY --from=0 /usr/local/bin/ssserver /ssserver
 
 VOLUME ["/cfg"]
 
 EXPOSE 55555
 
-ENTRYPOINT ["/outline-ss-server"]
+ENTRYPOINT ["/ssserver"]
 
-CMD ["-config", "/cfg/shadowsocks_o.yml", "--replay_history", "1000"]
+#CMD ["-config", "/cfg/shadowsocks_o.yml", "--replay_history", "1000"]
