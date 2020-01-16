@@ -6,7 +6,8 @@ RUN set -x && \
     apk --no-cache --update add \
     bash \
     ca-certificates \
-    curl \
+    curl 
+    musl-dev \
     git \
     make \
     upx && \
