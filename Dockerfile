@@ -14,7 +14,7 @@ RUN set -x && \
     mkdir -p /src && \
     cd /src/ && \
     git clone https://github.com/shadowsocks/shadowsocks-rust.git && \
-    cd /src/shadowsocks-rust.git/ && \ 
+    cd /src/shadowsocks-rust/ && \ 
     make -j 4 && \
     upx --ultra-brute -qq /usr/local/bin/ssserver
 
