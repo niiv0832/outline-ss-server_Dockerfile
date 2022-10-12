@@ -1,7 +1,7 @@
 #ver-2021.04.15.12.40
 ###############################################################################
 # BUILD STAGE
-FROM golang:1.16-alpine
+FROM golang:1.19-alpine
 
 RUN set -x && \
     apk --no-cache --update add \
